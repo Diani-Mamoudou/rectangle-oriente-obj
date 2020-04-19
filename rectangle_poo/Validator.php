@@ -8,7 +8,7 @@ class Validator {
     }
 
     public function is_valid(){
-       return count($this->errors)===0;
+       return count($this->errors)!=2 and empty($this->errors['all']);
     }
 
  // Longueur et Largueur doivent etre numeric(entier,reel)
@@ -51,7 +51,7 @@ public function compare($nbre1,$nbre2,$key1,$key2,$errorMessage="Longueur doit s
 
 public function  is_empty($nbre,$key,$sms=null){
     if(empty($nbre)){
-        if($sms==null){
+        if($sms==null ){
             $sms="Le Nombre  est Obligatoire";
         }
         $this->errors[$key]= $sms;
@@ -60,19 +60,35 @@ public function  is_empty($nbre,$key,$sms=null){
     }
 //Expressions Régulières
     public function  is_email($valeur,$key,$sms=null){
+        if (!filter_var($valeur, FILTER_VALIDATE_EMAIL)) {
+            if($sms==null){
+                $sms="c'est pas un mail";
+            }
+            $this->errors[$key]= $sms;
     
-    }
-
-    //9chiffres , commence par 77,78,75,76,70
+            }
+          }
+    
+    
     public function  is_telephone($valeur,$key,$sms=null){
+        if(!preg_match("#[7][5-8][- \.?]?[0-9][0-9][0-9][- \.?]?([0-9][0-9][- \.?]?){2}$#", $valeur)){
+            if($sms==null){
+                $sms="Le Numéro de telephone n'est pas reglo";
+            }
+            $this->errors[$key]= $sms;
+    
+            }
+        }
     
     }
+    
+    
 
 
 
 
 
-}
+
 
 
 

@@ -64,22 +64,25 @@ $largeur="";
           $validator->is_empty($largeur,'largeur');
          
          if($validator->is_valid()){
-            $validator->compare($longueur,$largeur,'longueur','largeur');
-            if($validator->is_valid()){
-                    /* 
-                     $rectangle=new Rectangle();
-                     $rectangle->setLongueur($longueur);
-                     $rectangle->setLargeur($largeur);
-                     */   
-                      $rectangle=new Rectangle($longueur,$largeur);
-                      $id= $_SESSION['id'];
-                      $id++;
-                      $_SESSION["Resultat".$id]=$rectangle;
-                    
-                      $_SESSION['id']=$id;
+                $validator->compare($longueur,$largeur,'longueur','largeur');
 
+
+
+                if($validator->is_valid()){
+                        /* 
+                        $rectangle=new Rectangle();
+                        $rectangle->setLongueur($longueur);
+                        $rectangle->setLargeur($largeur);
+                        */   
+                        $rectangle=new Rectangle($longueur,$largeur);
+                        $id= $_SESSION['id'];
+                        $id++;
+                        $_SESSION["Resultat".$id]=$rectangle;
+                        
+                        $_SESSION['id']=$id;
+
+                }
             }
-         }
          $errors=$validator->getErrors();
 
             if(isset($errors['longueur'])){
