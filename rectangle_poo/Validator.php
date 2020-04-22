@@ -16,7 +16,7 @@ class Validator {
     if(!is_numeric($nombre)){
         $this->errors[$key]= $errorMessage;
     }
-}
+    }
 
 /*
   Longueur positif
@@ -71,7 +71,7 @@ public function  is_empty($nbre,$key,$sms=null){
     
     
     public function  is_telephone($valeur,$key,$sms=null){
-        if(!preg_match("#[7][5-8][- \.?]?[0-9][0-9][0-9][- \.?]?([0-9][0-9][- \.?]?){2}$#", $valeur)){
+        if(!preg_match("#[7][5-8][- \.?]?[0-9][0-9][0-9][- \.?]?([0-9][0-9][- \.?]?){2}$#", $valeur) || !preg_match("#[7][0][- \.?]?[0-9][0-9][0-9][- \.?]?([0-9][0-9][- \.?]?){2}$#", $valeur)){
             if($sms==null){
                 $sms="Le Numéro de telephone n'est pas reglo";
             }
