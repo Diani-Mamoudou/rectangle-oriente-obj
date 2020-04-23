@@ -60,7 +60,9 @@ public function  is_empty($nbre,$key,$sms=null){
     }
 //Expressions Régulières
     public function  is_email($valeur,$key,$sms=null){
-        if (!filter_var($valeur, FILTER_VALIDATE_EMAIL)) {
+        $masque = "/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/";
+        
+            if(!preg_match($masque, $email)) {
             if($sms==null){
                 $sms="c'est pas un mail";
             }
