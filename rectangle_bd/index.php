@@ -9,26 +9,11 @@ $resultat=[];
 $longueur="";
 $largeur="";
 //Ouvrir session_start()
-
+session_start();
+if(!isset($_SESSION['id'])){
+ $_SESSION['id']=0;
+}
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
